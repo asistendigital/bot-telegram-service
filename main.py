@@ -2,7 +2,9 @@ import telebot
 from telebot import types
 
 # KONFIGURASI
-TOKEN = '8500940024:AAHHjJLNZaniVrlDn7D8nJ5gEPnKpgwsGCM'
+import os
+TOKEN = os.getenv('8500940024:AAFcLqZc9Sd5-GXVmRvopXpYIQ8IhfC1Ohs')
+
 ADMIN_ID = '7605498685' # Ganti dengan Chat ID kamu agar bot bisa kirim laporan pesanan
 bot = telebot.TeleBot(TOKEN)
 
@@ -81,4 +83,5 @@ def callback_query(call):
         bot.send_message(ADMIN_ID, teks_admin, parse_mode="Markdown")
         bot.answer_callback_query(call.id, "Pesanan terkirim ke Admin!")
 
-bot.infinity_polling()
+bot.infinity_polling(timeout=10, long_polling_timeout=5)
+
